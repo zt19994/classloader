@@ -13,6 +13,6 @@ public class MyManager implements BaseManager {
      */
     @Override
     public void logic() {
-        System.out.println("学习java热加载");
+        System.out.println("学习java热加载!!");
     }
 }

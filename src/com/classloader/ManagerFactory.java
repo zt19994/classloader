@@ -21,7 +21,7 @@ public class ManagerFactory {
     /**
      * 要加载的类的classpath
      */
-    public static final String CLASS_PATH = "F:/develop/classloader/bin";
+    public static final String CLASS_PATH = "F:/develop/classloader/out/production/classloader/";
 
     /**
      * 实现热加载的类的全名称（包名+类名）
@@ -35,7 +35,7 @@ public class ManagerFactory {
      * @return
      */
     public static BaseManager getManager(String className) {
-        File loadFile = new File(CLASS_PATH + className.replaceAll(".", "/") + ".class");
+        File loadFile = new File(CLASS_PATH + className.replaceAll("\\.", "/") + ".class");
         long lastModified = loadFile.lastModified();
         // loadTimeMap不包含className，即类没有被加载，需加载类到JVM
         if (loadTimeMap.get(className) == null) {
@@ -77,7 +77,7 @@ public class ManagerFactory {
      */
     private static BaseManager newInstance(Class<?> loadClass) {
         try {
-            return (BaseManager) loadClass.getConstructor(new Class[]{}).newInstance(new Object(){});
+            return (BaseManager) loadClass.getConstructor(new Class[]{}).newInstance(new Object[]{});
         } catch (InstantiationException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
